@@ -15,7 +15,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import WalletConnect from '../WalletConnect';
-import Navbar from '../navbar/Navbar'
+
+
 
 
 const drawerWidth = 300;
@@ -76,77 +77,43 @@ function DashboardForm() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-       <Navbar />
-        <Drawer variant="permanent" open={open}>
+        <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              px: [1],
+              pr: '24px', // keep right padding when drawer closed
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              {/* <ChevronLeftIcon /> */}
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              sx={{
+                marginRight: '36px',
+                ...(open && { display: 'none' }),
+              }}
+            >
+              {/* <MenuIcon /> */}
+            </IconButton>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1 }}
+            >
+              Dashboard
+            </Typography>
+            <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <WalletConnect />
+                {/* <NotificationsIcon /> */}
+              </Badge>
             </IconButton>
           </Toolbar>
-          <Divider />
-          <List component="nav">
-            {/* {mainListItems} */}
-            <Divider sx={{ my: 1 }} />
-            {/* {secondaryListItems} */}
-          </List>
-        </Drawer>
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
-          }}
-        >
-          <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 3 }}>
-            
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                    // description: 'sdfsdfsf'
-                  }}
-                  style={{ 
-                    paddingRight: '15rem', 
-                    marginRight: '1rem', 
-                    marginBottom: '2rem', 
-                    marginLeft: '0rem',
-                    paddingBottom: '100rem'}}
-                    
-                >
-                <Container>
-                    <h1>GRANT NAME</h1>
-                <form>
-                <label>
-                    Name:
-                    <input type="text" name="name" />
-                </label>
-                {/* <input type="submit" value="Submit" /> */}
-                </form>
-                </Container>
-                </Paper>
-                
-                
-              
-              
-              
-              
-          </Container>
-        </Box>
+        </AppBar>
+
+    
       </Box>
     </ThemeProvider>
   );
