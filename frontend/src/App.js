@@ -3,6 +3,9 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/ethereum-provider";
 import { providers } from "ethers";
 import { useState } from "react";
+import Dashboard from "./components/dashboard/Dashboard";
+// import DashboardSidebar from "./components/dashboard/DashboardSidebar";
+// import MainLayout from "../";
 
 function App() {
   const [address, setAddress] = useState("");
@@ -59,6 +62,11 @@ function App() {
           <button onClick={connect}>Connect</button>
         )}
       </header>
+    <div>
+
+        <Dashboard />
+
+    </div>
     </div>
   );
 }
