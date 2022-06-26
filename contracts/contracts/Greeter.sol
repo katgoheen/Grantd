@@ -1,8 +1,7 @@
-// SPDX-License-Identifier: MIT
+//SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
 import "./SafeMath.sol";
-
 
 contract Factory {
     
@@ -15,9 +14,11 @@ contract Factory {
         escrowCount = 0;
     }
     
-    function createContract() public {
-        address newContract = address(new Escrow(factoryOwner, escrowCount++));
-        allEscrowContracts.push(newContract);
+    Escrow public newContract;
+    function createContract() public returns(Escrow) {
+        newContract = new Escrow(factoryOwner, escrowCount++);
+        allEscrowContracts.push(address(newContract));
+        return newContract;
     }
     
     function getAllContracts() public view returns (address[] memory) {
@@ -100,7 +101,7 @@ contract Escrow {
         revert();
     }
 
-    function initEscrow(address _seller, address _buyer, uint _feePercent, uint256 _blockNum) public onlyEscrowOwner {
+    function initEscrow(address _seller, address _buyer, uint _feePercent, uint256 _blockNum) public {
         // require((_seller != msg.sender) && (_buyer != msg.sender));
         escrowID += 1;
         seller = _seller;
