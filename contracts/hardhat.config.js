@@ -22,10 +22,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   solidity: "0.8.4",
   networks: {
-    mumbai: {
+    kovan: {
       url: API_URL,
       accounts: [`0x${PRIVATE_KEY}`],
       gas: 800000000,
-    }
+    },
   }
 };
