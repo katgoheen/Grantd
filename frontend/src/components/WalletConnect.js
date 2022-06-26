@@ -4,7 +4,6 @@ import WalletConnectProvider from "@walletconnect/ethereum-provider";
 import { providers } from "ethers";
 import { useState } from "react";
 
-
 function WalletConnect() {
   const [address, setAddress] = useState("");
   const [provider, setProvider] = useState();
@@ -48,19 +47,14 @@ function WalletConnect() {
 
   return (
     <div>
-        {address ? (
-          <>
-            <div>Account{address}</div>
-            <button onClick={reset}>Disconnect</button>
-          </>
-        ) : (
-          <button onClick={connect}>Connect</button>
-        )}
-    <div>
-
-        {/* <Dashboard /> */}
-
-    </div>
+      {address ? (
+        <>
+          <div>Account: {address}</div>
+          <button onClick={reset}>Disconnect Wallet</button>
+        </>
+      ) : (
+        <button onClick={connect}>Connect Wallet</button>
+      )}
     </div>
   );
 }
